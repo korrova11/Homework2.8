@@ -25,7 +25,7 @@ public class DepartmentServiceImpl implements DepartmentService {
                 employeeService.createList(employeeService.employeeMap).stream()
                         .filter(e -> e.getDepartment() == depart)
                         .max(Comparator.comparingDouble(employee -> employee.getSalary()));
-        return Optional.of(employee1.orElseThrow(() -> new RuntimeException("В отделе нет сотрудников")));
+        return Optional.ofNullable(employee1).orElseThrow(EmployeeNotFoundException::new);
 
 
     }
@@ -38,7 +38,8 @@ public class DepartmentServiceImpl implements DepartmentService {
                         .filter(e -> e.getDepartment() == depart)
                         .min(Comparator.comparingDouble(employee -> employee.getSalary()));
 
-        return Optional.of(employee1.orElseThrow(() -> new RuntimeException("В отделе нет сотрудников")));
+
+        return Optional.ofNullable(employee1).orElseThrow(EmployeeNotFoundException::new);
 
 
     }
