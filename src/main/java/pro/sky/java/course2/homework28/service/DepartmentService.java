@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface DepartmentService {
 
-    Optional<Employee> findEmployeeMaxSalaryInDepartment(int depart);
+    Employee findEmployeeMaxSalaryInDepartment(int depart);
 
     Optional<Employee> findEmployeeMinSalaryInDepartment(int depart);
 

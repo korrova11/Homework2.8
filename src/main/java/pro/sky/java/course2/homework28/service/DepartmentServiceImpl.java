@@ -20,12 +20,13 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
 
-    public Optional<Employee> findEmployeeMaxSalaryInDepartment(int depart) {
-        Optional<Employee> employee1 =
-                employeeService.createList(employeeService.employeeMap).stream()
-                        .filter(e -> e.getDepartment() == depart)
-                        .max(Comparator.comparingDouble(employee -> employee.getSalary()));
-        return Optional.ofNullable(employee1).orElseThrow(EmployeeNotFoundException::new);
+    public Employee findEmployeeMaxSalaryInDepartment(int depart) {
+
+        return  employeeService.createList(employeeService.employeeMap).stream()
+                .filter(e -> e.getDepartment() == depart)
+                .max(Comparator.comparingDouble(employee -> employee.getSalary()))
+                .orElseThrow(EmployeeNotFoundException::new);
+
 
 
     }
@@ -36,10 +37,10 @@ public class DepartmentServiceImpl implements DepartmentService {
         Optional<Employee> employee1 =
                 employeeService.createList(employeeService.employeeMap).stream()
                         .filter(e -> e.getDepartment() == depart)
-                        .min(Comparator.comparingDouble(employee -> employee.getSalary()));
+                        .min(Comparator.comparingDouble(Employee::getSalary));
 
 
-        return Optional.ofNullable(employee1).orElseThrow(EmployeeNotFoundException::new);
+        return employee1;
 
 
     }

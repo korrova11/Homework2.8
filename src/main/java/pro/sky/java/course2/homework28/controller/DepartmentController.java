@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import pro.sky.java.course2.homework28.exception.EmployeeNotFoundException;
 import pro.sky.java.course2.homework28.model.Employee;
 import pro.sky.java.course2.homework28.service.DepartmentService;
 
@@ -21,13 +22,13 @@ public class DepartmentController {
     }
 
     @GetMapping("/max-salary")
-    public Optional<Employee> findEmployeeMaxSalaryInDepartment(@RequestParam int dep) {
+    public Employee findEmployeeMaxSalaryInDepartment(@RequestParam int dep) {
         return service.findEmployeeMaxSalaryInDepartment(dep);
     }
 
     @GetMapping("/min-salary")
-    public Optional<Employee> findEmployeeMinSalaryInDepartment(@RequestParam int dep) {
-        return service.findEmployeeMinSalaryInDepartment(dep);
+    public Employee findEmployeeMinSalaryInDepartment(@RequestParam int dep) {
+        return service.findEmployeeMinSalaryInDepartment(dep).orElseThrow(EmployeeNotFoundException::new);
     }
 
     @GetMapping(value = "/all",params = "department")

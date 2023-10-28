@@ -44,7 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             new Employee(
                     "Тимофей",
                     "Тимофеев",
-                    44000.0,
+                    27000.0,
                     1),
             "СергейСергеев",
             new Employee(
