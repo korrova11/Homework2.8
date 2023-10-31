@@ -28,10 +28,10 @@ public class DepartmentController {
 
     @GetMapping("/min-salary")
     public Employee findEmployeeMinSalaryInDepartment(@RequestParam int dep) {
-        return service.findEmployeeMinSalaryInDepartment(dep).orElseThrow(EmployeeNotFoundException::new);
+        return service.findEmployeeMinSalaryInDepartment(dep);
     }
 
-    @GetMapping(value = "/all",params = "department")
+    @GetMapping(value = "/all", params = "department")
     public List<Employee> findAllDepartment(@RequestParam("department") int dep) {
         return service.findAllDepartment(dep);
     }
