@@ -60,11 +60,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     //создание листа сотрудников из Map
-    public List<Employee> createList(Map<String, Employee> emplMap) {
-        final List<Employee> employees = new ArrayList<>();
-        for (Employee employee : employeeMap.values()) {
-            employees.add(employee);
-        }
+
+    public List<Employee> createList() {
+
+        final List<Employee> employees = new ArrayList<>(employeeMap.values());
         return employees;
     }
 
