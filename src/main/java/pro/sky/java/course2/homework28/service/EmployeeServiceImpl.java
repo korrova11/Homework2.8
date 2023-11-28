@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.apache.commons.lang3.StringUtils.*;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
     /* private final Map<String, Employee> employeeMap;
@@ -58,25 +60,37 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     //создание листа сотрудников из Map
-    public List<Employee> createList(Map<String, Employee> emplMap) {
-        final List<Employee> employees = new ArrayList<>();
-        for (Employee employee : employeeMap.values()) {
-            employees.add(employee);
-        }
+
+    public List<Employee> createList() {
+
+        final List<Employee> employees = new ArrayList<>(employeeMap.values());
         return employees;
     }
 
 
     @Override
     //Добавление сотрудника в Map
-    public Employee add(String firstName, String lastName, double salary, int deparment) {
-        Employee employee = new Employee(firstName, lastName, salary, deparment);
-        String s = firstName + lastName;
-        if (employeeMap.containsKey(s)) {
-            throw new EmployeeAlreadyAddedException();
+    public Employee add(String firstName, String lastName, double salary, int department) {
+        //проверка имени и фамилии на содержание некорректных символов
+
+        if(isAlpha(firstName)&&isAlpha(lastName)){
+
+            Employee emp = new Employee(firstName, lastName, salary, department);
+
+            String s = firstName + lastName;
+            if (!employeeMap.containsKey(s)) {
+                employeeMap.put(s, emp);
+                return emp;
+
+            } else {
+                           throw new EmployeeAlreadyAddedException("Такой сотрудник уже есть");
+                       }
+
         }
-        employeeMap.put(s, employee);
-        return employee;
+        else{
+            throw new EmployeeAlreadyAddedException("Некорректное имя или фамилия");
+
+        }
     }
 
     @Override

@@ -2,14 +2,32 @@ package pro.sky.java.course2.homework28.model;
 
 import java.util.Objects;
 
+import static org.apache.commons.lang3.StringUtils.capitalize;
+
 public class Employee {
-    private final String firstName;
-    private final String lastName;
+    private  String firstName;
+    private  String lastName;
+
     private double salary;
+
     private int department;
+    public Employee(String firstName, String lastName, double salary, int department) {
+        this.firstName = capitalize(firstName.toLowerCase());
+        this.lastName = capitalize(lastName.toLowerCase());
+        this.salary = salary;
+        this.department = department;
+    }
 
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public void setDepartment(int department) {
@@ -22,13 +40,6 @@ public class Employee {
 
     public int getDepartment() {
         return department;
-    }
-
-    public Employee(String firstName, String lastName, double salary, int department) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.salary = salary;
-        this.department = department;
     }
 
     public String getFirstName() {
@@ -54,6 +65,7 @@ public class Employee {
 
     @Override
     public String toString() {
+
         return "Employee{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

@@ -8,6 +8,9 @@ import java.util.Map;
 public interface EmployeeService {
 
 
+    //создание листа сотрудников из Map
+    List<Employee> createList();
+
     Employee add(String firstName, String lastName, double salary, int deparment);
 
     Employee remove(String firstName, String lastName);
@@ -15,5 +18,5 @@ public interface EmployeeService {
 
     Map<String, Employee> findAll() ;
 
-    List<Employee> createList(Map<String, Employee> emplMap);
+
 }
