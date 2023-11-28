@@ -1,6 +1,7 @@
 package pro.sky.java.course2.homework28.service;
 
 import org.springframework.stereotype.Service;
+import pro.sky.java.course2.homework28.exception.EmployeeIllegalNameOrLastNameException;
 import pro.sky.java.course2.homework28.model.Employee;
 import pro.sky.java.course2.homework28.exception.EmployeeAlreadyAddedException;
 import pro.sky.java.course2.homework28.exception.EmployeeNotFoundException;
@@ -88,7 +89,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         }
         else{
-            throw new EmployeeAlreadyAddedException("Некорректное имя или фамилия");
+            throw new EmployeeIllegalNameOrLastNameException("Некорректное имя или фамилия");
 
         }
     }
