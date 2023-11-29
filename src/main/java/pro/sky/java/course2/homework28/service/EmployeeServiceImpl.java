@@ -15,12 +15,8 @@ import static org.apache.commons.lang3.StringUtils.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    /* private final Map<String, Employee> employeeMap;
 
-     public EmployeeServiceImpl(Map<String, Employee> employeeMap) {
-         this.employeeMap = employeeMap;
-     }*/
-    Map<String, Employee> employeeMap = new HashMap<>(Map.of(
+      Map<String, Employee> employeeMap = new HashMap<>(Map.of(
             "ИванИванов",
             new Employee(
 
