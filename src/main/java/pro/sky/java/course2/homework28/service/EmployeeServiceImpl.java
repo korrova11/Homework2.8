@@ -16,7 +16,7 @@ import static org.apache.commons.lang3.StringUtils.*;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-      Map<String, Employee> employeeMap = new HashMap<>(Map.of(
+    private final Map<String, Employee> employeeMap = new HashMap<>(Map.of(
             "ИванИванов",
             new Employee(
 
@@ -70,7 +70,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee add(String firstName, String lastName, double salary, int department) {
         //проверка имени и фамилии на содержание некорректных символов
 
-        if(isAlpha(firstName)&&isAlpha(lastName)){
+        if (isAlpha(firstName) && isAlpha(lastName)) {
 
             Employee emp = new Employee(firstName, lastName, salary, department);
 
@@ -80,11 +80,10 @@ public class EmployeeServiceImpl implements EmployeeService {
                 return emp;
 
             } else {
-                           throw new EmployeeAlreadyAddedException("Такой сотрудник уже есть");
-                       }
+                throw new EmployeeAlreadyAddedException("Такой сотрудник уже есть");
+            }
 
-        }
-        else{
+        } else {
             throw new EmployeeIllegalNameOrLastNameException("Некорректное имя или фамилия");
 
         }

@@ -20,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class EmployeeServiceTest {
     EmployeeServiceImpl out = new EmployeeServiceImpl();
+
     public static Stream<Arguments> provideParamsForTest() {
         return Stream.of(
                 Arguments.of("Антон", "Антонов", 25000.0, 4),
@@ -35,10 +36,10 @@ public class EmployeeServiceTest {
     @ParameterizedTest
     @MethodSource("provideParamsForTest")
     public void testAddWillThrowExceptionWhenContains(String firstName, String lastName, double salary, int department) {
-        out.add(firstName,lastName,salary,department);
+        out.add(firstName, lastName, salary, department);
         assertThrows(EmployeeAlreadyAddedException.class,
                 () -> {
-                    out.add(firstName,lastName,salary,department);
+                    out.add(firstName, lastName, salary, department);
                 });
 
 
@@ -47,9 +48,9 @@ public class EmployeeServiceTest {
     @ParameterizedTest
     @MethodSource("provideParamsForTest")
     public void testAddOnContains(String firstName, String lastName, double salary, int department) {
-        Employee emp = new Employee(firstName,lastName,salary,department);
-        out.add(firstName,lastName,salary,department);
-        assertEquals(out.find(firstName,lastName), emp);
+        Employee emp = new Employee(firstName, lastName, salary, department);
+        out.add(firstName, lastName, salary, department);
+        assertEquals(out.find(firstName, lastName), emp);
 
     }
 
