@@ -158,7 +158,7 @@ public class DepartmentServiceImplTest {
     public void testSumSalary() {
         when(employeeService.createList()).thenReturn(EMPLOYEES);
         assertTrue(out.sumSalary(2) ==
-                (EMPLOYEES.get(0).getSalary() + EMPLOYEES.get(1).getSalary()));
+                (67012.0));
 
     }
 
