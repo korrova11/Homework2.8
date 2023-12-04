@@ -78,7 +78,6 @@ public class DepartmentServiceImplTest {
         verify(employeeService, atLeast(1)).findAll();
         verify(employeeService, timeout(100)).findAll();
 
-
     }
 
     @Test
