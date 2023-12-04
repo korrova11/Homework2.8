@@ -13,5 +13,7 @@ public interface DepartmentService {
 
     List<Employee> findAllDepartment(int depart);
 
-    Map<Integer,List<Employee>> findAllDepartmentAll();
+    Map<Integer, List<Employee>> findAllDepartmentAll();
+
+    Double sumSalary(int depart);
 }

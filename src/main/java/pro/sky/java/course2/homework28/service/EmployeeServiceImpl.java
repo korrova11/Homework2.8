@@ -1,6 +1,7 @@
 package pro.sky.java.course2.homework28.service;
 
 import org.springframework.stereotype.Service;
+import pro.sky.java.course2.homework28.exception.EmployeeIllegalNameOrLastNameException;
 import pro.sky.java.course2.homework28.model.Employee;
 import pro.sky.java.course2.homework28.exception.EmployeeAlreadyAddedException;
 import pro.sky.java.course2.homework28.exception.EmployeeNotFoundException;
@@ -14,12 +15,8 @@ import static org.apache.commons.lang3.StringUtils.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    /* private final Map<String, Employee> employeeMap;
 
-     public EmployeeServiceImpl(Map<String, Employee> employeeMap) {
-         this.employeeMap = employeeMap;
-     }*/
-    Map<String, Employee> employeeMap = new HashMap<>(Map.of(
+    private final Map<String, Employee> employeeMap = new HashMap<>(Map.of(
             "ИванИванов",
             new Employee(
 
@@ -73,7 +70,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee add(String firstName, String lastName, double salary, int department) {
         //проверка имени и фамилии на содержание некорректных символов
 
-        if(isAlpha(firstName)&&isAlpha(lastName)){
+        if (isAlpha(firstName) && isAlpha(lastName)) {
 
             Employee emp = new Employee(firstName, lastName, salary, department);
 
@@ -83,12 +80,11 @@ public class EmployeeServiceImpl implements EmployeeService {
                 return emp;
 
             } else {
-                           throw new EmployeeAlreadyAddedException("Такой сотрудник уже есть");
-                       }
+                throw new EmployeeAlreadyAddedException("Такой сотрудник уже есть");
+            }
 
-        }
-        else{
-            throw new EmployeeAlreadyAddedException("Некорректное имя или фамилия");
+        } else {
+            throw new EmployeeIllegalNameOrLastNameException("Некорректное имя или фамилия");
 
         }
     }
